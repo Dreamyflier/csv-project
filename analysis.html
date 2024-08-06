@@ -1,0 +1,9 @@
+<h2>Data Analysis</h2>
+<h3>First Few Rows</h3>
+{{ head|safe }}
+<h3>Summary Statistics</h3>
+{{ description|safe }}
+<h3>Missing Values</h3>
+{{ missing_values|safe }}
+<h3>Plots</h3>
+<img src="data:image/png;base64,{{ plot }}" alt="Data Plot">

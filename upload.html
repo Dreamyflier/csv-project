@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CSV File</title>
+</head>
+<body>
+    <h1>Upload CSV File</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="csv_file" />
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if first_rows %}
+    <h2>First Few Rows of Data:</h2>
+    {{ first_rows|safe }}
+    {% endif %}
+
+    {% if summary_stats %}
+    <h2>Summary Statistics:</h2>
+    {{ summary_stats|safe }}
+    {% endif %}
+
+    {% if missing_values %}
+    <h2>Missing Values:</h2>
+    {{ missing_values|safe }}
+    {% endif %}
+
+    {% if plots %}
+    <h2>Generated Plots:</h2>
+    {% for plot in plots %}
+        <div>
+            <img src="data:image/png;base64,{{ plot }}" alt="Histogram Plot">
+        </div>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
